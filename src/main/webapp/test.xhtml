@@ -13,7 +13,15 @@
 
         <h1>#{testView.string}</h1>
         <h:form id="frmTest">
-            
+            <p:dataTable id="table" var="row" value="#{testView.tableModel.dates}">
+                <p:column id="dateColumn" headerText="Date" sortBy="date">
+                    <h:outputText value="#{row}"/>
+                </p:column>
+
+                <p:columns var="column" value="#{testView.columns}" headerText="#{column.name}" sortBy="#{testView.tableModel.getValue(row, column.keyId)}">
+                    <h:outputText value="#{testView.tableModel.getValue(row, column.keyId).doubleValue}"/>
+                </p:columns>
+            </p:dataTable>
         </h:form>
 
     </h:body>
